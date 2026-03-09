@@ -1,13 +1,15 @@
 import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme/theme';
-import HomePage from './components/HomePage';
+import LandingPage from './pages/LandingPage';
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <HomePage />
+      <CssBaseline />
+      <LandingPage />
     </ThemeProvider>
   );
-}
+};
 
 export default App;

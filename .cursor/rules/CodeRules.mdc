@@ -1,0 +1,191 @@
+---
+description: React, TypeScript, and MUI UI component standards, code structure, and error handling
+alwaysApply: true
+---
+
+# CodeRules – UI, Structure, and Error Handling
+
+This project is a React + TypeScript SPA using the latest MUI (v7). These rules apply to all UI components, code structure, and error handling across the project.
+
+---
+
+## 1. Components and Hooks
+
+- **Functional components only.** No class components. Use **arrow function** syntax for components. Do **not** use `React.FC`.
+- **TypeScript:** All components and hooks are written in TypeScript. Use **interface** (not `type`) for defining the shape or structure of objects (props, API data, domain models).
+- **Hooks only.** All state, lifecycle, and context must use hooks; no class-based logic.
+- **Naming:** PascalCase for components; camelCase for props, variables, and hooks. Custom hooks must start with `use` (e.g. `usePatientIntakeForm`).
+- **Typing:** Define a `ComponentNameProps` interface for each component’s props. No `any`. Type event handlers (e.g. `onChange: (e: ChangeEvent<HTMLInputElement>) => void`).
+
+### Interfaces (object shape)
+
+Use `interface` for objects. Optional properties use `?`.
+
+```ts
+interface User {
+  username: string;
+  email: string;
+  age?: number; // Optional property
+}
+
+interface UserCardProps {
+  user: User;
+  onEdit?: (user: User) => void;
+}
+```
+
+### Sample component (reference for all components)
+
+Follow this structure: interfaces first, then arrow-function component with typed props and MUI.
+
+```tsx
+import { Box, Typography, Button } from '@mui/material';
+import type { ChangeEvent } from 'react';
+
+interface User {
+  username: string;
+  email: string;
+  age?: number;
+}
+
+interface UserCardProps {
+  user: User;
+  onEdit?: (user: User) => void;
+}
+
+const UserCard = ({ user, onEdit }: UserCardProps) => {
+  const handleClick = () => {
+    onEdit?.(user);
+  };
+
+  return (
+    <Box sx={{ p: 2, border: 1, borderColor: 'divider', borderRadius: 1 }}>
+      <Typography variant="h6" color="text.primary">
+        {user.username}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {user.email}
+      </Typography>
+      {user.age != null && (
+        <Typography variant="caption" color="text.secondary">
+          Age: {user.age}
+        </Typography>
+      )}
+      {onEdit && (
+        <Button variant="outlined" onClick={handleClick} sx={{ mt: 2 }}>
+          Edit
+        </Button>
+      )}
+    </Box>
+  );
+};
+
+export default UserCard;
+```
+
+### Sample custom hook
+
+Hooks return typed objects; use interfaces for the return shape when it’s an object.
+
+```ts
+import { useState, useCallback, useEffect } from 'react';
+
+interface UseUserReturn {
+  user: User | null;
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
+}
+
+const useUser = (userId: string | null): UseUserReturn => {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  const refetch = useCallback(() => {
+    // fetch logic
+  }, [userId]);
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  return { user, isLoading, error, refetch };
+};
+```
+
+---
+
+## 2. MUI and Reusability
+
+- **Version:** Use MUI v7 APIs and patterns; avoid deprecated or legacy APIs.
+- **Reusable components:** Prefer small, single-purpose components that accept props for behavior and styling (e.g. reusable `TextField`, `SelectField`, `CheckboxGroup`). Compose MUI primitives inside these components rather than one-off MUI usage in every page.
+- **Responsive:** Use MUI’s `sx` breakpoints (`xs`, `sm`, `md`, `lg`, `xl`) and/or `useMediaQuery` for layout and typography. Prefer theme breakpoints (e.g. `theme.breakpoints.up('sm')`) over raw pixel values.
+- **Theme:** Use the app theme (e.g. `src/theme/theme.ts`) for colors, spacing, and typography in `sx`/`styled` (e.g. `color: 'text.primary'`, theme spacing) instead of hardcoded hex or px where possible.
+
+**Theme and responsive usage in `sx`:**
+
+```tsx
+<Box
+  sx={{
+    py: 2,
+    px: { xs: 2, sm: 3 },
+    color: 'text.primary',
+    backgroundColor: 'background.default',
+    typography: { xs: 'body2', sm: 'body1' },
+  }}
+/>
+```
+
+---
+
+## 3. Consistent UI/UX
+
+- **Theme and tokens:** Use palette (`primary`, `secondary`, `text.primary`, `background.default`), `typography` variants, and spacing from the theme for a consistent look.
+- **Spacing:** Prefer theme spacing (e.g. `sx={{ mt: 2, px: 2 }}` or `theme.spacing()`) for margins and padding; avoid arbitrary magic numbers across files.
+- **Typography:** Use MUI `Typography` with theme variants (`h1`–`h6`, `body1`, `body2`, `caption`, etc.) instead of raw `<p>`/`<span>` and inline font sizes.
+- **Accessibility:** Use semantic HTML, `aria-*` where needed, visible focus states, and sufficient contrast. Form fields must have associated labels and error messaging (e.g. `aria-describedby` for errors).
+- **Loading and feedback:** Use a consistent pattern for loading states (e.g. skeletons or spinners) and user feedback (e.g. toasts/snackbars) across the SPA.
+
+---
+
+## 4. Code Structure
+
+- **Folders:** `src/components/` for shared UI; `src/pages/` (or `src/pages/<feature>/`) for route-level components; `src/hooks/` for custom hooks; `src/types/` for shared types; `src/theme/` for theme.
+- **File naming:** PascalCase for component files (e.g. `PatientIntakePage.tsx`); camelCase for hooks and utilities (e.g. `usePatientIntakeForm.ts`).
+- **Component file layout:** One main component per file; default export for the component; named exports for types or small helpers if needed. Order: imports → types/interfaces → component → export.
+- **Barrel exports:** Use `index.ts` in a folder only when it adds clarity (e.g. re-exporting several components); avoid deep barrel chains that hurt tree-shaking.
+
+---
+
+## 5. Error Boundaries
+
+- **Placement:** Use an error boundary at least at the app shell (around the main router/content) so a runtime error in any route does not white-screen the whole SPA. Optionally add boundaries per major route or feature for finer-grained fallbacks.
+- **Implementation:** React error boundaries require a class component. Use a single, project-approved error boundary component (class component) in e.g. `src/components/ErrorBoundary.tsx`. Do not add new class components elsewhere; this is the only exception. Wrap the app or router in it (e.g. in `App.tsx`).
+- **Fallback UI:** Provide a dedicated fallback component (functional, can use MUI) that shows a clear message and a recovery action (e.g. “Try again” or “Go home”) and is accessible.
+- **Logging:** Log errors in the boundary’s `componentDidCatch` (e.g. `console.error` or a small logger); leave room for a future error-reporting service if needed.
+
+**Fallback component (functional, used by the error boundary):**
+
+```tsx
+import { Box, Typography, Button } from '@mui/material';
+
+interface ErrorFallbackProps {
+  error: Error;
+  resetErrorBoundary: () => void;
+}
+
+const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => (
+  <Box role="alert" sx={{ p: 3, textAlign: 'center' }}>
+    <Typography variant="h6" color="error" gutterBottom>
+      Something went wrong
+    </Typography>
+    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+      {error.message}
+    </Typography>
+    <Button variant="contained" onClick={resetErrorBoundary}>
+      Try again
+    </Button>
+  </Box>
+);
+```
