@@ -5,7 +5,7 @@ import {
   Stack,
 } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { aboutContent } from '../data/siteContent';
+import { aboutContent } from '../data/aboutContent';
 
 const AboutSection = () => {
   return (

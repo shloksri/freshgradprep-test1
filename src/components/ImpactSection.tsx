@@ -4,7 +4,7 @@ import {
   Container,
   Grid,
 } from '@mui/material';
-import { impactContent } from '../data/siteContent';
+import { impactContent } from '../data/impactContent';
 
 const ImpactSection = () => {
   return (

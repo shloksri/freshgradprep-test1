@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { bookingContent } from '../data/siteContent';
+import { bookingContent } from '../data/bookingContent';
 
 const BookingSection = () => {
   return (

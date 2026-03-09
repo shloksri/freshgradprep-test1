@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { navbarContent } from '../data/siteContent';
+import { navbarContent } from '../data/navbarContent';
 import fgpLogo from '../assets/FGP_Logo_BGremoved.png';
 
 const Navbar = () => {

@@ -8,7 +8,7 @@ import {
   Divider,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { footerContent } from '../data/siteContent';
+import { footerContent } from '../data/footerContent';
 
 const Footer = () => {
   return (

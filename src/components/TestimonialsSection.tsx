@@ -11,7 +11,7 @@ import {
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { testimonialsContent } from '../data/siteContent';
+import { testimonialsContent } from '../data/testimonialsContent';
 
 const TestimonialsSection = () => {
   const { testimonials } = testimonialsContent;

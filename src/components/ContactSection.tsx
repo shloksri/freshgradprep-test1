@@ -11,7 +11,7 @@ import {
 import DescriptionIcon from '@mui/icons-material/Description';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
-import { contactContent } from '../data/siteContent';
+import { contactContent } from '../data/contactContent';
 
 const ContactSection = () => {
   return (

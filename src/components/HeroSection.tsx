@@ -6,7 +6,7 @@ import {
   Container,
   Stack,
 } from '@mui/material';
-import { heroContent } from '../data/siteContent';
+import { heroContent } from '../data/heroContent';
 
 const HeroSection = () => {
   return (

@@ -9,7 +9,7 @@ import {
   Grid,
   Stack,
 } from '@mui/material';
-import { servicesContent } from '../data/siteContent';
+import { servicesContent } from '../data/servicesContent';
 
 const ServicesSection = () => {
   return (

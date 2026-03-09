@@ -5,7 +5,7 @@ import {
   Stack,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { founderContent } from '../data/siteContent';
+import { founderContent } from '../data/founderContent';
 
 const FounderSection = () => {
   return (

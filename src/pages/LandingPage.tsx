@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import Navbar from '../components/Navbar';
+import SampleComponent from '../components/SampleComponent';
 import HeroSection from '../components/HeroSection';
 import ProblemSection from '../components/ProblemSection';
 import AboutSection from '../components/AboutSection';
@@ -16,6 +17,7 @@ const LandingPage = () => {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Navbar />
+      <SampleComponent />
       <HeroSection />
       <ProblemSection />
       <AboutSection />

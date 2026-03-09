@@ -10,7 +10,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
-import { problemContent } from '../data/siteContent';
+import { problemContent } from '../data/problemContent';
 
 const iconMap = [
   <MailOutlineIcon key="mail" sx={{ fontSize: 36, color: 'highlight.main' }} />,

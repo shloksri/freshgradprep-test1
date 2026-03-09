@@ -11,7 +11,7 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import { audienceContent } from '../data/siteContent';
+import { audienceContent } from '../data/audienceContent';
 import type { SvgIconComponent } from '@mui/icons-material';
 
 const iconMap: SvgIconComponent[] = [

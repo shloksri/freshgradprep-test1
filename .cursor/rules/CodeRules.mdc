@@ -14,7 +14,7 @@ This project is a React + TypeScript SPA using the latest MUI (v7). These rules 
 - **Functional components only.** No class components. Use **arrow function** syntax for components. Do **not** use `React.FC`.
 - **TypeScript:** All components and hooks are written in TypeScript. Use **interface** (not `type`) for defining the shape or structure of objects (props, API data, domain models).
 - **Hooks only.** All state, lifecycle, and context must use hooks; no class-based logic.
-- **Naming:** PascalCase for components; camelCase for props, variables, and hooks. Custom hooks must start with `use` (e.g. `usePatientIntakeForm`).
+- **Naming:** PascalCase for components; camelCase for props, variables, and hooks. Custom hooks must start with `use` (e.g. `useStudentDataForm`).
 - **Typing:** Define a `ComponentNameProps` interface for each component’s props. No `any`. Type event handlers (e.g. `onChange: (e: ChangeEvent<HTMLInputElement>) => void`).
 
 ### Interfaces (object shape)
@@ -152,7 +152,7 @@ const useUser = (userId: string | null): UseUserReturn => {
 ## 4. Code Structure
 
 - **Folders:** `src/components/` for shared UI; `src/pages/` (or `src/pages/<feature>/`) for route-level components; `src/hooks/` for custom hooks; `src/types/` for shared types; `src/theme/` for theme.
-- **File naming:** PascalCase for component files (e.g. `PatientIntakePage.tsx`); camelCase for hooks and utilities (e.g. `usePatientIntakeForm.ts`).
+- **File naming:** PascalCase for component files (e.g. `StudentDataPage.tsx`); camelCase for hooks and utilities (e.g. `useStudentDataForm.ts`).
 - **Component file layout:** One main component per file; default export for the component; named exports for types or small helpers if needed. Order: imports → types/interfaces → component → export.
 - **Barrel exports:** Use `index.ts` in a folder only when it adds clarity (e.g. re-exporting several components); avoid deep barrel chains that hurt tree-shaking.
 
