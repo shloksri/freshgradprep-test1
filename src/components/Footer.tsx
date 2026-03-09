@@ -115,32 +115,46 @@ const Footer = () => {
 
         <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)', my: 4 }} />
 
-        <Box
+        {/* Footer row 1: Copyright */}
+        <Typography
+          variant="caption"
+          sx={{ color: 'rgba(255,255,255,0.5)', textAlign: 'center', display: 'block' }}
+        >
+          {footerContent.copyright}
+        </Typography>
+
+        {/* Footer row 2: Made with love */}
+        <Typography
           sx={{
+            color: 'rgba(255,255,255,0.5)',
+            textAlign: 'center',
             display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' },
-            justifyContent: 'space-between',
             alignItems: 'center',
-            gap: 1.5,
+            justifyContent: 'center',
+            gap: 0.5,
+            fontSize: '1rem',
+            mt: 4,
           }}
         >
-          <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)' }}>
-            {footerContent.copyright}
-          </Typography>
-          <Typography
-            variant="caption"
+          Made with{' '}
+          <FavoriteIcon sx={{ fontSize: 18, color: 'highlight.main' }} />{' '}
+          in India by the{' '}
+          <Link
+            href={footerContent.communityLink.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            underline="always"
             sx={{
               color: 'rgba(255,255,255,0.5)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 0.5,
+              textDecorationColor: 'rgba(255,255,255,0.5)',
+              '&:hover': { color: 'rgba(255,255,255,0.8)', textDecorationColor: 'rgba(255,255,255,0.8)' },
+              transition: 'color 0.2s',
             }}
           >
-            Made with{' '}
-            <FavoriteIcon sx={{ fontSize: 14, color: 'highlight.main' }} />{' '}
-            in India by the React Hyderabad community
-          </Typography>
-        </Box>
+            {footerContent.communityLink.label}
+          </Link>
+          {' '}community
+        </Typography>
       </Container>
     </Box>
   );

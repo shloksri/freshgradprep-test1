@@ -294,4 +294,8 @@ export const footerContent = {
   contactWhatsApp: '+91 98765 43210',
   copyright: `© ${new Date().getFullYear()} FreshGradPrep. All rights reserved.`,
   madeWithLove: 'Made with <3 in India by the React Hyderabad community',
+  communityLink: {
+    label: 'React Hyderabad',
+    href: 'https://reacthyderabad.com',
+  },
 };
