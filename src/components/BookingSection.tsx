@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
 import { bookingContent } from '../data/bookingContent';
 
 const BookingSection = () => {
@@ -88,6 +89,23 @@ const BookingSection = () => {
               }}
             >
               {bookingContent.secondaryCta.label}
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              startIcon={<EmailIcon />}
+              href={bookingContent.emailCta.href}
+              sx={{
+                borderColor: 'rgba(255,255,255,0.5)',
+                color: '#ffffff',
+                px: 4,
+                '&:hover': {
+                  borderColor: '#ffffff',
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                },
+              }}
+            >
+              {bookingContent.emailCta.label}
             </Button>
           </Stack>
         </Box>

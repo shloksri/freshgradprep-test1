@@ -10,6 +10,10 @@ export const bookingContent = {
     label: 'Chat on WhatsApp',
     href: 'https://wa.me/919876543210',
   },
+  emailCta: {
+    label: 'Email Us',
+    href: 'mailto:freshgradprep@gmail.com',
+  },
   calendlyPlaceholder: 'https://calendly.com/freshgradprep',
   whatsappNumber: '+91 98765 43210',
 };

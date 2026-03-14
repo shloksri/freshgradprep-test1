@@ -5,9 +5,9 @@ import { createAppTheme } from './theme/theme';
 import { freshgradTheme1 } from './theme/colorThemes';
 import type { ColorTheme } from './theme/colorThemes';
 import LandingPage from './pages/LandingPage';
-import ThemePreviewWidget from './components/ThemePreviewWidget';
+// import ThemePreviewWidget from './components/ThemePreviewWidget';
 
-const enableThemePreview = true;
+// const enableThemePreview = true;
 
 const App = () => {
   const [activeColors, setActiveColors] = useState<ColorTheme>(freshgradTheme1);
@@ -17,12 +17,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <LandingPage />
-      {enableThemePreview && (
+      {/* {enableThemePreview && (
         <ThemePreviewWidget
           activeColors={activeColors}
           onThemeChange={setActiveColors}
         />
-      )}
+      )} */}
     </ThemeProvider>
   );
 };

@@ -3,8 +3,10 @@ import {
   Typography,
   Container,
   Stack,
+  IconButton,
 } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import { founderContent } from '../data/founderContent';
 
 const FounderSection = () => {
@@ -39,28 +41,56 @@ const FounderSection = () => {
             alignItems: 'center',
           }}
         >
-          {/* Image placeholder */}
-          <Box
-            sx={{
-              width: { xs: 200, md: 280 },
-              height: { xs: 200, md: 280 },
-              borderRadius: '50%',
-              backgroundColor: 'background.paper',
-              border: '4px solid',
-              borderColor: 'accent.main',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-              boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', px: 3 }}
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+            {/* Image placeholder */}
+            <Box
+              sx={{
+                width: { xs: 200, md: 280 },
+                height: { xs: 200, md: 280 },
+                borderRadius: '50%',
+                backgroundColor: 'background.paper',
+                border: '4px solid',
+                borderColor: 'accent.main',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+              }}
             >
-              Founder photo
-            </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.secondary', textAlign: 'center', px: 3 }}
+              >
+                Founder photo
+              </Typography>
+            </Box>
+
+            <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+              {founderContent.linkedin && (
+                <IconButton
+                  component="a"
+                  href={founderContent.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  sx={{ color: 'accent.main', '&:hover': { color: 'accent.dark' } }}
+                >
+                  <LinkedInIcon />
+                </IconButton>
+              )}
+              {founderContent.instagram && (
+                <IconButton
+                  component="a"
+                  href={founderContent.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  sx={{ color: 'accent.main', '&:hover': { color: 'accent.dark' } }}
+                >
+                  <InstagramIcon />
+                </IconButton>
+              )}
+            </Stack>
           </Box>
 
           {/* Bio content */}
@@ -87,17 +117,6 @@ const FounderSection = () => {
                 {paragraph}
               </Typography>
             ))}
-
-            <Stack spacing={1.5} sx={{ mt: 3 }}>
-              {founderContent.highlights.map((item) => (
-                <Box key={item} sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                  <CheckCircleIcon sx={{ color: 'accent.main', fontSize: 20 }} />
-                  <Typography variant="body2" sx={{ color: 'primary.main', fontWeight: 500 }}>
-                    {item}
-                  </Typography>
-                </Box>
-              ))}
-            </Stack>
           </Box>
         </Box>
       </Container>
